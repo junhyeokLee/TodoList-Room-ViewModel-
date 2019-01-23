@@ -1,4 +1,4 @@
-package com.junhyeoklee.todolist.ui;
+package com.junhyeoklee.todolist.ui.view_activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
