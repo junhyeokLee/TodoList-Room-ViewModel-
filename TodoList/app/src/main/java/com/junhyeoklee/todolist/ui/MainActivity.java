@@ -1,7 +1,9 @@
-package com.junhyeoklee.todolist;
+package com.junhyeoklee.todolist.ui;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.junhyeoklee.todolist.R;
 
 public class MainActivity extends AppCompatActivity {
 
