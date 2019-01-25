@@ -19,7 +19,7 @@ public class MainViewModel extends AndroidViewModel {
 
     public MainViewModel(@NonNull Application application) {
         super(application);
-        AppDatabase database = AppDatabase.getsInstance(this.getApplication());
+        AppDatabase database = AppDatabase.getInstance(this.getApplication());
         Log.d(TAG,"Activity retrieving the tasks from the Database");
         tasks = database.taskDao().loadAllTasks();
 
