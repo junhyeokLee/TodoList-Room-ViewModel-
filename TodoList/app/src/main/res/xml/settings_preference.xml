@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:layout="@layout/layout_setting_information"
+        android:title="정보">
+
+        <Preference
+            android:defaultValue="Default value"
+            android:key="text_help"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:textSize="14sp"
+            android:title="도움말">
+        </Preference>
+
+        <Preference
+            android:title="문의사항 : junhyeoklee616@gmail.com"
+            android:key="text_questions2"
+            >
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="mailto:junhyeoklee616@gmail.com">
+                <extra
+                    android:name="android.intent.extra.SUBJECT"
+                    android:value="Feedback"/>
+                <extra
+                    android:name="android.intent.extra.TEXT"
+                    android:value="Text of Feedback"/>
+            </intent>
+        </Preference>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:layout="@layout/layout_setting_design"
+        android:title="디자인">
+
+        <Preference
+            android:defaultValue="Default value"
+            android:key="background_color"
+            android:title="배경설정">
+        </Preference>
+
+        <ListPreference
+            android:defaultValue="Default value"
+            android:key="text_color"
+            android:entries="@array/TextColor"
+            android:entryValues="@array/TextColor_Values"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:title="텍스트 설정" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

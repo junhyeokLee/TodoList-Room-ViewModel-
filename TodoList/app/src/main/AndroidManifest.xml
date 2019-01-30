@@ -8,7 +8,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
+        android:theme="@style/AppTheme.NoActionBar"
         tools:ignore="GoogleAppIndexingWarning">
 
         <!-- The manifest entry for the MainActivity -->
@@ -23,7 +23,12 @@
         <!-- AddTaskActivity -->
         <activity
             android:name="com.junhyeoklee.todolist.ui.view_activity.AddTaskActivity"
-            android:label="@string/add_task_activity_name" />
+            android:label="@string/add_task_activity_name"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity android:name="com.junhyeoklee.todolist.ui.SettingHelp"></activity>
+        <activity android:name="com.junhyeoklee.todolist.ui.SettingPreferenceActivity"></activity>
+        <activity android:name="com.junhyeoklee.todolist.ui.SettingColorActivity"></activity>
 
     </application>
 

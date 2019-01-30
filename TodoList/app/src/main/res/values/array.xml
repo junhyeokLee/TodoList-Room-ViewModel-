@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="BackgroundColor">
+        <item>darkgreen</item>
+        <item>white</item>
+        <item>pastelyellow</item>
+        <item>dahong</item>
+        <item>black</item>
+    </string-array>
+
+    <string-array name="BackgroundColor_Values">
+        <item>#455A64</item>
+        <item>#ffff</item>
+        <item>#ffa01e</item>
+        <item>#ff6e6e</item>
+        <item>#000000</item>
+    </string-array>
+
+    <string-array name="TextColor">
+        <item>darkgreen</item>
+        <item>white</item>
+        <item>pastelyellow</item>
+        <item>dahong</item>
+        <item>black</item>
+    </string-array>
+
+    <string-array name="TextColor_Values">
+        <item>#455A64</item>
+        <item>#ffff</item>
+        <item>#ffa01e</item>
+        <item>#ff6e6e</item>
+        <item>#000000</item>
+
+    </string-array>
+
+</resources>

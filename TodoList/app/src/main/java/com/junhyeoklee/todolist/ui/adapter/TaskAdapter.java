@@ -20,7 +20,7 @@ import java.util.Locale;
 public class TaskAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private static final String TAG = "TaskAdapter";
-    private static final String DATE_FORMAT = "dd/MM/yyy";
+    private static final String DATE_FORMAT = "yyy/MM/dd";
 
     private Context mContext;
     private List<TaskEntry> mTaskEntries;
@@ -42,7 +42,7 @@ public class TaskAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, final int position) {
     TaskViewHolder taskViewHolder = (TaskViewHolder) viewHolder;
         TaskEntry taskEntry = mTaskEntries.get(position);
         String description = taskEntry.getDescription();
@@ -58,24 +58,28 @@ public class TaskAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         GradientDrawable priorityCircl = (GradientDrawable) taskViewHolder.priorityView.getBackground();
         int prioritycolor = getPriorityColor(priority);
         priorityCircl.setColor(prioritycolor);
-
-        mItemClickListener.onItemClickListener(taskEntry.getId());
-
+        taskViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int elementId = mTaskEntries.get(position).getId();
+                mItemClickListener.onItemClickListener(elementId);
+            }
+        });
     }
 
     private int getPriorityColor(int priority){
         int priorityColor =0;
         switch (priority){
             case 1:
-                priorityColor = ContextCompat.getColor(mContext,R.color.materialRed);
+                priorityColor = ContextCompat.getColor(mContext,R.color.HighColor);
                 break;
 
             case 2:
-                priorityColor = ContextCompat.getColor(mContext,R.color.materialOrange);
+                priorityColor = ContextCompat.getColor(mContext,R.color.MediumColor);
                 break;
 
             case 3:
-                 priorityColor = ContextCompat.getColor(mContext,R.color.materialYellow);
+                 priorityColor = ContextCompat.getColor(mContext,R.color.LowColor);
                  break;
 
                  default:

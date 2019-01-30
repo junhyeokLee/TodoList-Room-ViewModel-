@@ -4,9 +4,24 @@
     <color name="colorPrimaryDark">#455A64</color>
     <color name="colorPrimaryLight">#CFD8DC</color>
     <color name="colorAccent">#FFC107</color>
+    <color name="light_gray">#f2f2f2</color>
 
     <!-- colors for task priority selection -->
-    <color name="materialRed">#E74C3C</color>
-    <color name="materialOrange">#E67E22</color>
-    <color name="materialYellow">#00BCD4</color>
+    <color name="HighColor">#cc0000</color>
+    <color name="MediumColor">#e68a00</color>
+    <color name="LowColor">#3385ff</color>
+
+    <!-- 배경 색상 -->
+    <color name="PastelYellow">#ffa01e</color>
+    <color name="PastelYellow2">#ffb400</color>
+    <color name="PastelYellow3">#ffcd28</color>
+
+    <color name="Dahong">#ff6e6e</color>
+    <color name="Dahong2">#ff8c8c</color>
+    <color name="Dahong3">#f5aaaa</color>
+
+    <color name="PastelPuple">#ad9aee</color>
+    <color name="PastelPuple2">#c1aeee</color>
+    <color name="PastelPuple3">#d5c2ee</color>
+
 </resources>

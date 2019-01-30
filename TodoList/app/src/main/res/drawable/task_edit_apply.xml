@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--   눌린 후 버튼이미지 파일명을 써준다.-->
+    <!-- pressed -->
+    <!--  눌리기 전 버튼이미지 파일명을 써준다..-->
+    <!-- default -->
+    <item android:state_pressed="false">
+        <shape >
+            <gradient android:angle="270" android:endColor="#607D8B" android:startColor="#607D8B"/>
+            <corners android:bottomLeftRadius="1dp" android:bottomRightRadius="8dp" android:topLeftRadius="1dp" android:topRightRadius="8dp"/>
+        </shape>
+    </item>
+
+</selector>
