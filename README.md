@@ -9,3 +9,9 @@ Screenshots
 </div>
 
 ** 간편하고 가볍게 사용하기 쉬운 TodoList 앱 입니다.**
+
+### Include
+* LiveData
+* ViewModel
+* Room
+* ButterKnife
