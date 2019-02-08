@@ -56,12 +56,12 @@ public class MainActivity extends AppCompatActivity implements TaskAdapter.ItemC
         ButterKnife.bind(this);
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
 
-        appData = getSharedPreferences("appData", MODE_PRIVATE);
-        load();
-        if(SettingManager.get().getColorBackGround() != 0) {
-            save();
+        // SharePreference 배경설정 컬러 가져오기
+        appData = getSharedPreferences("colorData", MODE_PRIVATE);
+        int color = appData.getInt("colorData",mColorSet);
+        if(color != 0) {
+            mRecyclerView.setBackgroundColor(getResources().getColor(color));
         }
-
 
         BottomNavigationMenuView menuView = (BottomNavigationMenuView) bottomNavigationView.getChildAt(0);
         for (int i = 0; i < menuView.getChildCount(); i++) {
@@ -145,21 +145,5 @@ public class MainActivity extends AppCompatActivity implements TaskAdapter.ItemC
         Intent intent = new Intent(MainActivity.this, AddTaskActivity.class);
         intent.putExtra(AddTaskActivity.EXTRA_TASK_ID, itemId);
         startActivity(intent);
-    }
-
-    // 설정값을 저장하는 함수save
-    private void save() {
-        // SharedPreferences 객체만으론 저장 불가능 Editor 사용
-        SharedPreferences.Editor editor = appData.edit();
-        // 에디터객체.put타입( 저장시킬 이름, 저장시킬 값 )
-        // 저장시킬 이름이 이미 존재하면 덮어씌움
-        editor.putInt("colorData",SettingManager.get().getColorBackGround());
-        mRecyclerView.setBackgroundColor(getResources().getColor(SettingManager.get().getColorBackGround()));
-        // apply, commit 을 안하면 변경된 내용이 저장되지 않음
-        editor.apply();
-    }
-
-    private void load(){
-        mColorSet = appData.getInt("colorData",SettingManager.get().getColorBackGround());
     }
 }

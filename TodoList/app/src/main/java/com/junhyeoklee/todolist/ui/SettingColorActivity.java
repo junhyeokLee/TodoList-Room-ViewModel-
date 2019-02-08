@@ -54,8 +54,8 @@ public class SettingColorActivity extends AppCompatActivity {
 
 
 
-            mAdapter = new SettingColorSetAdapter(teamColors);
-            mRecyclerView.setAdapter(mAdapter);
+        mAdapter = new SettingColorSetAdapter(teamColors);
+        mRecyclerView.setAdapter(mAdapter);
 
 
     }

@@ -4,11 +4,13 @@ import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
@@ -46,10 +48,14 @@ public class AddTaskActivity extends AppCompatActivity {
     RadioGroup mRadioGroup;
     @BindView(R.id.saveButton)
     Button mButton;
+    @BindView(R.id.layout_add_task)
+    LinearLayout mAddTaskLayout;
 
     private int mTaskId = DEFAULT_TASK_ID;
 
     private AppDatabase mDb;
+    private SharedPreferences appData;
+    private int mColorSet;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -61,6 +67,14 @@ public class AddTaskActivity extends AppCompatActivity {
 
         if(savedInstanceState != null && savedInstanceState.containsKey(INSTANCE_TASK_ID)){
             mTaskId = savedInstanceState.getInt(INSTANCE_TASK_ID,DEFAULT_TASK_ID);
+        }
+
+        // SharePreference 배경설정 컬러 가져오기
+        appData = getSharedPreferences("colorData", MODE_PRIVATE);
+        int color = appData.getInt("colorData",mColorSet);
+        if(color != 0) {
+            mButton.setBackgroundColor(getResources().getColor(color));
+            mAddTaskLayout.setBackgroundColor(getResources().getColor(color));
         }
 
         Intent intent = getIntent();

@@ -36,14 +36,14 @@ public class TaskAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @Override
     public TaskViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(mContext)
-        .inflate(R.layout.layout_task,viewGroup,false);
+                .inflate(R.layout.layout_task,viewGroup,false);
         return new TaskViewHolder(view);
     }
 
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, final int position) {
-    TaskViewHolder taskViewHolder = (TaskViewHolder) viewHolder;
+        TaskViewHolder taskViewHolder = (TaskViewHolder) viewHolder;
         TaskEntry taskEntry = mTaskEntries.get(position);
         String description = taskEntry.getDescription();
         int priority = taskEntry.getPriority();
@@ -79,11 +79,11 @@ public class TaskAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 break;
 
             case 3:
-                 priorityColor = ContextCompat.getColor(mContext,R.color.LowColor);
-                 break;
+                priorityColor = ContextCompat.getColor(mContext,R.color.LowColor);
+                break;
 
-                 default:
-                     break;
+            default:
+                break;
         }
         return priorityColor;
     }

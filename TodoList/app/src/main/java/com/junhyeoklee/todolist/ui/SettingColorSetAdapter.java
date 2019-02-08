@@ -20,7 +20,7 @@ import java.util.List;
 public class SettingColorSetAdapter extends RecyclerView.Adapter<SettingColorSetAdapter.ColorSetViewHolder> {
     private List<TaskColor> mColor;
     Context mContext;
-    private SharedPreferences appData;
+
 
     public SettingColorSetAdapter(ArrayList items){
         this.mColor = items;
@@ -44,20 +44,21 @@ public class SettingColorSetAdapter extends RecyclerView.Adapter<SettingColorSet
 //            holder.mlayout_team_color_recyclerview.setBackgroundResource(R.drawable.team_color_recycler_click);
 //        }
         // 해당 position 에 해당하는 데이터 결합
-       final String ColorName = mColor.get(position).getColorName();
-       final int ImgColor = mColor.get(position).getColorBackGround();
+        final String ColorName = mColor.get(position).getColorName();
+        final int ImgColor = mColor.get(position).getColorBackGround();
         holder.mColorName.setText(ColorName);
         holder.mImgColor.setBackgroundResource(ImgColor);
         final int itemPosition = holder.getAdapterPosition();
-
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                SettingManager.get().setColorBackGround(mColor.get(position).getColorBackGround());
+//                SettingManager.get().setColorBackGround(mColor.get(position).getColorBackGround());
 
                 Intent lIntent = new Intent(v.getContext(),SettingPreferenceActivity.class);
+                // 선택한 배경컬러값 넘겨주기
+                lIntent.putExtra("colorData",mColor.get(position).getColorBackGround());
                 lIntent.setFlags(lIntent.FLAG_ACTIVITY_CLEAR_TOP);
                 v.getContext().startActivity(lIntent);
 

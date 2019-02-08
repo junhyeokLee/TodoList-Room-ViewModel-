@@ -26,9 +26,10 @@ public class SettingPreferenceActivity extends PreferenceActivity implements Pre
 
     PreferenceScreen screen;
     Preference text_Help;
-   private Preference text_Background;
+    private Preference text_Background;
     private  ListPreference text_textColor;
     Preference text_Questions;
+    private int mColor;
 
 
     @Override
@@ -36,6 +37,14 @@ public class SettingPreferenceActivity extends PreferenceActivity implements Pre
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.settings_preference);
 
+        // SharePreference Adapter에서 넘겨받은 값으로 배경컬러 저장하기
+        Intent lIntent = getIntent();
+        if(lIntent != null) {
+            SharedPreferences pref = getSharedPreferences("colorData", MODE_PRIVATE);
+            SharedPreferences.Editor editor = pref.edit();
+            editor.putInt("colorData",lIntent.getIntExtra("colorData",mColor));
+            editor.commit();
+        }
         screen = getPreferenceScreen();
 
         text_Help = (Preference)findPreference("text_help");
@@ -60,9 +69,9 @@ public class SettingPreferenceActivity extends PreferenceActivity implements Pre
 
         String value = (String) newValue;
         if(preference == text_Background){
-          ListPreference listPreference = (ListPreference) preference;
-          int index = listPreference.findIndexOfValue(value);
-          text_Background.setSummary(index>=0?listPreference.getEntries()[index]:null); // entries 값 대신 이에 해당하는 entryValues값 set
+            ListPreference listPreference = (ListPreference) preference;
+            int index = listPreference.findIndexOfValue(value);
+            text_Background.setSummary(index>=0?listPreference.getEntries()[index]:null); // entries 값 대신 이에 해당하는 entryValues값 set
         }
         else if(preference == text_textColor){
             ListPreference listPreference = (ListPreference) preference;
