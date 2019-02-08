@@ -1,30 +1,38 @@
 package com.junhyeoklee.todolist.ui.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.drawable.GradientDrawable;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.android.todolist.R;
 import com.junhyeoklee.todolist.data.model.TaskEntry;
+import com.junhyeoklee.todolist.ui.SettingManager;
 import com.junhyeoklee.todolist.ui.holder.TaskViewHolder;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class TaskAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private static final String TAG = "TaskAdapter";
     private static final String DATE_FORMAT = "yyy/MM/dd";
-
     private Context mContext;
     private List<TaskEntry> mTaskEntries;
     final private ItemClickListener mItemClickListener;
+    private SharedPreferences appData;
+    private int mColorSet;
+
     private SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT,Locale.getDefault());
 
     public TaskAdapter(Context context,ItemClickListener listener){
@@ -49,9 +57,19 @@ public class TaskAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         int priority = taskEntry.getPriority();
         String updatedAt = dateFormat.format(taskEntry.getUpdateAt());
 
+        // Text 색상 설정
+        appData = mContext.getSharedPreferences("colorData", MODE_PRIVATE);
+        int color = appData.getInt("colorData",mColorSet);
+        if(color == R.color.white || color == R.color.gray){
+            taskViewHolder.taskDescriptionView.setTextColor(mContext.getResources().getColor(R.color.black));
+            taskViewHolder.updatedAtView.setTextColor(mContext.getResources().getColor(R.color.black));
+        }else{
+            taskViewHolder.taskDescriptionView.setTextColor(mContext.getResources().getColor(R.color.white));
+            taskViewHolder.updatedAtView.setTextColor(mContext.getResources().getColor(R.color.white));
+        }
+
         taskViewHolder.taskDescriptionView.setText(description);
         taskViewHolder.updatedAtView.setText(updatedAt);
-
         String priorityString = "" + priority;
         taskViewHolder.priorityView.setText(priorityString);
 

@@ -2,12 +2,15 @@ package com.junhyeoklee.todolist.ui.view_activity;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
@@ -17,9 +20,12 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.android.todolist.R;
 import com.junhyeoklee.todolist.AppExecutors;
@@ -48,6 +54,9 @@ public class MainActivity extends AppCompatActivity implements TaskAdapter.ItemC
     private AppDatabase mDb;
     private SharedPreferences appData;
     private int mColorSet;
+    private Toast mToast;
+    private AlertDialog mAlertDialog = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +89,28 @@ public class MainActivity extends AppCompatActivity implements TaskAdapter.ItemC
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.menuitem_refresh:
+                        mAlertDialog = new AlertDialog.Builder(MainActivity.this)
+                                .setTitle("TodoList")
+                                .setIcon(R.drawable.ic_info_black_24dp)
+                                .setMessage("할 일 목록을 전부 삭제 하시겠습니까?")
+                                .setNegativeButton(android.R.string.no, null)
+                                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+
+                                    public void onClick(DialogInterface alertDialog, int arg1) {
+                                        AppExecutors.getInstance().diskIO().execute(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                List<TaskEntry> tasks = mAdapter.getTask();
+                                                for(int i = 0 ; i < tasks.size() ; i++) {
+                                                    mDb.taskDao().deleteTask(tasks.get(i));
+                                                }
+                                            }
+                                        });
+                                     customToast("할 일 목록이 전체 삭제 되었습니다.");
+                                    }
+                                }).create();
+
+                        mAlertDialog.show();
                         break;
                     case R.id.menuitem_add_circle:
                         Intent addTaskIntent = new Intent(MainActivity.this, AddTaskActivity.class);
@@ -145,5 +176,18 @@ public class MainActivity extends AppCompatActivity implements TaskAdapter.ItemC
         Intent intent = new Intent(MainActivity.this, AddTaskActivity.class);
         intent.putExtra(AddTaskActivity.EXTRA_TASK_ID, itemId);
         startActivity(intent);
+    }
+
+    private void customToast(String message){
+        // toast 메세지 custom
+
+        Context context = getApplicationContext();
+        mToast = Toast.makeText(context, message, Toast.LENGTH_SHORT);
+        LayoutInflater inflater = getLayoutInflater();
+        View view = inflater.inflate(R.layout.custom_toastview_background, (ViewGroup) findViewById(R.id.containers));
+        TextView txtView = view.findViewById(R.id.txtview);
+        txtView.setText(message);
+        mToast.setView(view);
+        mToast.show();
     }
 }

@@ -19,6 +19,14 @@
             android:key="help_text2"
             android:title="삭제 : 옆으로 밀기">
         </Preference>
+        <Preference
+            android:defaultValue="Default value"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:key="help_text5"
+            android:title="전체삭제 : - 버튼">
+        </Preference>
+
 
         <Preference
             android:defaultValue="Default value"
@@ -34,14 +42,6 @@
             android:singleLine="true"
             android:key="help_text4"
             android:title="배경설정 : 배경색상 변경 ">
-        </Preference>
-
-        <Preference
-            android:defaultValue="Default value"
-            android:selectAllOnFocus="true"
-            android:singleLine="true"
-            android:key="help_text5"
-            android:title="텍스트설정 : 텍스트색상 변경 ">
         </Preference>
 
     </PreferenceCategory>

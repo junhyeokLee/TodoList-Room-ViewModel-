@@ -42,15 +42,6 @@
             android:title="배경설정">
         </Preference>
 
-        <ListPreference
-            android:defaultValue="Default value"
-            android:key="text_color"
-            android:entries="@array/TextColor"
-            android:entryValues="@array/TextColor_Values"
-            android:negativeButtonText="@null"
-            android:positiveButtonText="@null"
-            android:title="텍스트 설정" />
-
     </PreferenceCategory>
 
 </PreferenceScreen>

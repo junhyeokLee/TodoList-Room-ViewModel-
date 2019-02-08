@@ -73,6 +73,9 @@ public class AddTaskActivity extends AppCompatActivity {
         appData = getSharedPreferences("colorData", MODE_PRIVATE);
         int color = appData.getInt("colorData",mColorSet);
         if(color != 0) {
+            if(color == R.color.white || color == R.color.gray) {
+                mButton.setTextColor(getResources().getColor(R.color.black));
+            }
             mButton.setBackgroundColor(getResources().getColor(color));
             mAddTaskLayout.setBackgroundColor(getResources().getColor(color));
         }
@@ -80,6 +83,7 @@ public class AddTaskActivity extends AppCompatActivity {
         Intent intent = getIntent();
         if(intent != null && intent.hasExtra(EXTRA_TASK_ID)){
             mButton.setText(R.string.update_button);
+
 
             if(mTaskId == DEFAULT_TASK_ID){
 

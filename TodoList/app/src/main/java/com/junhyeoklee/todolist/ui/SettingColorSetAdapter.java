@@ -4,12 +4,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Rect;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.android.todolist.R;
 import com.junhyeoklee.todolist.data.model.TaskColor;
@@ -20,6 +22,7 @@ import java.util.List;
 public class SettingColorSetAdapter extends RecyclerView.Adapter<SettingColorSetAdapter.ColorSetViewHolder> {
     private List<TaskColor> mColor;
     Context mContext;
+    private Toast mToast;
 
 
     public SettingColorSetAdapter(ArrayList items){
@@ -60,6 +63,9 @@ public class SettingColorSetAdapter extends RecyclerView.Adapter<SettingColorSet
                 // 선택한 배경컬러값 넘겨주기
                 lIntent.putExtra("colorData",mColor.get(position).getColorBackGround());
                 lIntent.setFlags(lIntent.FLAG_ACTIVITY_CLEAR_TOP);
+//                Toast toast = Toast.makeText(v.getContext(), "재실행 후 적용", Toast.LENGTH_LONG);
+                customToast("재실행 후 적용");
+//                toast.show();
                 v.getContext().startActivity(lIntent);
 
             }
@@ -102,6 +108,20 @@ public class SettingColorSetAdapter extends RecyclerView.Adapter<SettingColorSet
             super.getItemOffsets(outRect, view, parent, state);
             outRect.top = divHeight;
         }
+    }
+
+    private void customToast(String message){
+        // toast 메세지 custom
+
+        Context mContextToast = mContext.getApplicationContext();
+        mToast = Toast.makeText(mContextToast, message, Toast.LENGTH_SHORT);
+        LayoutInflater inflater = (LayoutInflater) mContextToast.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//        getLayoutInflater();
+        View view = inflater.inflate(R.layout.custom_toastview_background, null);
+        TextView txtView = view.findViewById(R.id.txtview);
+        txtView.setText(message);
+        mToast.setView(view);
+        mToast.show();
     }
 
 }

@@ -41,11 +41,43 @@ public class SettingColorActivity extends AppCompatActivity {
     private void initData(){
 
         ArrayList<TaskColor> teamColors = new ArrayList();
-        teamColors.add(new TaskColor("Main",R.color.colorPrimaryDark));
-        teamColors.add(new TaskColor("Red",R.color.colorPrimary));
-        teamColors.add(new TaskColor("Blue",R.color.colorAccent));
-        teamColors.add(new TaskColor("Black",R.color.design_default_color_primary));
-        teamColors.add(new TaskColor("Yellow",R.color.colorAccent));
+        teamColors.add(new TaskColor("#455A64",R.color.colorPrimaryDark));
+        teamColors.add(new TaskColor("#607D8B",R.color.colorPrimary));
+        teamColors.add(new TaskColor("#ffffff",R.color.white));
+        teamColors.add(new TaskColor("#e3e3e3",R.color.gray));
+        teamColors.add(new TaskColor("#000000",R.color.black));
+        teamColors.add(new TaskColor("#cb3737",R.color.red));
+        teamColors.add(new TaskColor("#ee6f57",R.color.orange));
+        teamColors.add(new TaskColor("#df0e62",R.color.dahong4));
+        teamColors.add(new TaskColor("#ff6e6e",R.color.dahong));
+        teamColors.add(new TaskColor("#ff8c8c",R.color.dahong2));
+        teamColors.add(new TaskColor("#f5aaaa",R.color.dahong3));
+        teamColors.add(new TaskColor("#ffd3de",R.color.pink));
+        teamColors.add(new TaskColor("#f6b8d1",R.color.pink2));
+        teamColors.add(new TaskColor("#3d1860",R.color.pastelPuble4));
+        teamColors.add(new TaskColor("#643579",R.color.pastelPuble5));
+        teamColors.add(new TaskColor("#bb99cd",R.color.pastelPuble6));
+        teamColors.add(new TaskColor("#ad9aee",R.color.pastelPuple));
+        teamColors.add(new TaskColor("#c1aeee",R.color.pastelPuple2));
+        teamColors.add(new TaskColor("#d5c2ee",R.color.pastelPuple3));
+        teamColors.add(new TaskColor("#ffa01e",R.color.pastelYellow));
+        teamColors.add(new TaskColor("#ffb400",R.color.pastelYellow2));
+        teamColors.add(new TaskColor("#ffcd28",R.color.pastelYellow3));
+        teamColors.add(new TaskColor("#5e8b6f",R.color.green5));
+        teamColors.add(new TaskColor("#436e4f",R.color.green4));
+        teamColors.add(new TaskColor("#65c6c4",R.color.green3));
+        teamColors.add(new TaskColor("#5dc0a6",R.color.green));
+        teamColors.add(new TaskColor("#3f8f8d",R.color.green2));
+        teamColors.add(new TaskColor("#113f67",R.color.blue));
+        teamColors.add(new TaskColor("#34699a",R.color.blue2));
+        teamColors.add(new TaskColor("#408ab4",R.color.blue3));
+        teamColors.add(new TaskColor("#233142",R.color.navi));
+        teamColors.add(new TaskColor("#1a3263",R.color.navi2));
+        teamColors.add(new TaskColor("#6927ff",R.color.navilight));
+        teamColors.add(new TaskColor("#837dff",R.color.navilight2));
+
+
+
 
         //LinearLayout 으로 설정
         mRecyclerView.setLayoutManager(mLayoutManager);
